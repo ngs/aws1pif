@@ -1,6 +1,9 @@
 workflow "Build" {
-  on = "release"
-  resolves = ["HTTP client"]
+  on = push"
+  resolves = [
+    "build darwin/amd64",
+    "HTTP client"
+  ]
 }
 
 action "build darwin/amd64" {
