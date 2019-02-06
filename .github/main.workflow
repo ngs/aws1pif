@@ -1,13 +1,13 @@
 workflow "Build" {
-  on = push"
+  on = "push"
   resolves = [
     "build darwin/amd64",
-    "HTTP client"
+    "HTTP client",
   ]
 }
 
 action "build darwin/amd64" {
-  uses = ".github/build-action"
+  uses = "./.github/build-action"
   env = {
     GOOS = "darwin"
     GOARCH = "amd64"
