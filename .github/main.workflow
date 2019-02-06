@@ -4,8 +4,7 @@ workflow "Build" {
 }
 
 action "build darwin/amd64" {
-  uses = "docker://golang:1.11-alpine"
-  runs = "go build"
+  uses = ".github/build-action"
   env = {
     GOOS = "darwin"
     GOARCH = "amd64"
