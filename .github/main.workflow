@@ -1,5 +1,5 @@
 workflow "Build" {
-  on = "push"
+  on = "release"
   resolves = [
     "build darwin/amd64",
     "release darwin/amd64",
