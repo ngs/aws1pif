@@ -1,22 +1,12 @@
 workflow "Build" {
   on = "release"
   resolves = [
-    "build darwin/amd64",
     "release darwin/amd64",
   ]
 }
 
-action "build darwin/amd64" {
-  uses = "./.github/actions/build"
-  env = {
-    GOOS = "darwin"
-    GOARCH = "amd64"
-  }
-}
-
 action "release darwin/amd64" {
-  uses = "./.github/actions/release"
-  needs = ["build darwin/amd64"]
+  uses = "ngs/go-release.action@master"
   env = {
     GOOS = "darwin"
     GOARCH = "amd64"
