@@ -17,4 +17,9 @@ action "build darwin/amd64" {
 action "release darwin/amd64" {
   uses = "./.github/actions/release"
   needs = ["build darwin/amd64"]
+  env = {
+    GOOS = "darwin"
+    GOARCH = "amd64"
+  }
 }
+
