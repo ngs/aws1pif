@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -eux
+set -eu
 
 UPLOAD_URL=$(cat $GITHUB_EVENT_PATH | jq -r .upload_url)
 UPLOAD_URL=${UPLOAD_URL/{?name,label}/}
