@@ -1,13 +1,14 @@
 #!/bin/sh
 
-set -eu
+set -eux
 
 UPLOAD_URL=$(cat $GITHUB_EVENT_PATH | jq -r .upload_url)
 UPLOAD_URL=${UPLOAD_URL/{?name,label}/}
 RELEASE_NAME=$(cat $GITHUB_EVENT_PATH | jq -r .name)
-NAME="${1}_${RELEASE_NAME}_${GOOS}_${GOARCH}"
+PROJECT_NAME=$(basename $GITHUB_REPOSITORY)
+NAME="${PROJECT_NAME}_${RELEASE_NAME}_${GOOS}_${GOARCH}"
 
-tar cvfz tmp.tgz $1
+tar cvfz tmp.tgz $PROJECT_NAME
 CKECKSUM=$(md5 -q tmp.tgz)
 
 curl \
