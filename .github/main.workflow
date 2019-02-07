@@ -2,20 +2,19 @@ workflow "Build" {
   on = "push"
   resolves = [
     "build darwin/amd64",
-    "HTTP client",
+    "release darwin/amd64",
   ]
 }
 
 action "build darwin/amd64" {
-  uses = "./.github/build-action"
+  uses = "./.github/actions/build"
   env = {
     GOOS = "darwin"
     GOARCH = "amd64"
   }
 }
 
-action "HTTP client" {
-  uses = "swinton/httpie.action@02571a073b9aaf33930a18e697278d589a8051c1"
+action "release darwin/amd64" {
+  uses = "./.github/actions/release"
   needs = ["build darwin/amd64"]
-  runs = "cat $GITHUB_EVENT_PATH"
 }
