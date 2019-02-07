@@ -12,6 +12,7 @@ action "build darwin/amd64" {
     GOOS = "darwin"
     GOARCH = "amd64"
   }
+  secrets = ["GITHUB_TOKEN"]
 }
 
 action "release darwin/amd64" {
@@ -22,4 +23,3 @@ action "release darwin/amd64" {
     GOARCH = "amd64"
   }
 }
-
