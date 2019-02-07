@@ -9,7 +9,7 @@ PROJECT_NAME=$(basename $GITHUB_REPOSITORY)
 NAME="${PROJECT_NAME}_${RELEASE_NAME}_${GOOS}_${GOARCH}"
 
 tar cvfz tmp.tgz $PROJECT_NAME
-CKECKSUM=$(md5 -q tmp.tgz)
+CKECKSUM=$(md5sum tmp.tgz | cut -d ' ' -f 1)
 
 curl \
   -X POST \
